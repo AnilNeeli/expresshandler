@@ -1,0 +1,28 @@
+<div class="container">
+  <form id="student-form" action="{{ action }}" method="{{ method }}">
+    <label for="fname">First Name:</label>
+    <input id="fname" type="text" name="firstName"
+      value="{{#if (ifuser user "students")}}{{student.firstName}} {{else}}{{teacher.firstName}} {{/if}} "
+      placeholder="Enter first name" required />
+    <br />
+    <label for="lname">Last Name:</label>
+    <input id="lname" type="text" name="lastName"
+      value="{{#if (ifuser user "students")}}{{student.lastName}} {{else}}{{teacher.lastName}} {{/if}}"
+      placeholder="Enter last name" required />
+    <br />
+    <label for="age">Age:</label>
+    <input type="text" id="age" name="age"
+      value="{{#if (ifuser user "students")}}{{student.age}} {{else}}{{teacher.age}} {{/if}}"
+      placeholder="Enter your age" required />
+    <br />
+    <label>Gender: </label>
+    <input id="male" type="radio" name="gender" value="male" required />
+    <label for="male">Male</label>
+    <input id="female" type="radio" name="gender" value="female" required />
+    <label for="female">Female</label>
+    <br />
+    <input type="submit"
+      value="{{#if (ifuser user "students")}}student {{else}}teacher {{/if}} {{#if (ifequality mode "add")}}Add {{else}}Edit {{/if}}"
+      class="btn btn-primary" />
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<script>
+  const $studentForm = document.querySelector("#student-form");
+
+  $studentForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const studentDetails = {};
+    const studentForm = new FormData($studentForm);
+    for (const formField of studentForm.entries()) {
+      const [key, value] = formField;
+      studentDetails[key] = value;
+    }
+    console.log(studentDetails)
+
+    // Fetch to submit form
+    const requestConfig = {
+      method: "{{ method }}",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(studentDetails)
+    };
+    fetch("{{ action }}", requestConfig)
+      .then(response => {
+        if (response.status !== 200) {
+          throw Error("Request failed");
+        }
+        else {
+          alert("form submitted!");
+        }
+      })
+      .catch(error => {
+        console.log(error)
+        alert("Unable to submit form!");
+      })
+  });
+</script>
