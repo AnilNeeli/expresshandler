@@ -64,7 +64,7 @@ app.get("/edit-student/:id", (req, res) => {
     });
 
     if (student) {
-      res.render("edit-students", {
+      res.render("edit-form", {
         layout: "navigation",
         action: "/api/students/" + student.id,
         method: "PATCH",
@@ -146,7 +146,7 @@ app.get("/edit-teacher/:id", (req, res) => {
     });
 
     if (teacher) {
-      res.render("edit-students", {
+      res.render("edit-form", {
         layout: "navigation",
         action: "/api/teachers/" + teacher.id,
         method: "PATCH",
